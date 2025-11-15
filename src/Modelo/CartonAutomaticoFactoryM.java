@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class CartonAutomaticoFactoryM implements ICartonFactory {
 
-    private Random aleatorioa = new Random();
+    private Random aleatorio = new Random();
     
     @Override
     public CartonBingo crearCarton(String id, String mode) {
@@ -23,20 +23,23 @@ public class CartonAutomaticoFactoryM implements ICartonFactory {
         CartonBingo carton = new CartonBingo(id);
 
         for (int j = 0; j < 5; j++) {
-            Set<Integer> numeroColumnas = new HashSet<>();
+            Set<Integer> numeroColumnas = new HashSet<>(); 
             int minimo = j * 15 + 1;
             int maximo = (j + 1) * 15;
             for (int i = 0; i < 5; i++) {
                 if (i == 2 && j == 2) {
                     continue;
                 }
+                
                 int numero;
                 do {
-                    numero = random.nextInt(maximo - minimo + 1) + minimo;
+                    
+                    numero = aleatorio.nextInt(maximo - minimo + 1) + minimo;
+               
                 } while (numeroColumnas.contains(numero));
+                
                 numeroColumnas.add(numero);
                 carton.setNumeros(i, j, numero);
-
             }
         }
         return carton;
