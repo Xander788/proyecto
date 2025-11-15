@@ -18,6 +18,7 @@ public class GestorBingoMem implements IGestorBingo{
     private Set<Integer> numerosSacados = new HashSet<>();
     private Tombola tombola = Tombola.getInstance();
     private String modoJuego = "normal";
+    private String modoLlenado = "manual";
     
     @Override
     public void anadirCarton(CartonBingo carton) {
@@ -157,6 +158,16 @@ public class GestorBingoMem implements IGestorBingo{
             }
         }
         return true;
+    }
+
+    @Override
+    public void setModoLlenado(String modo) {
+      this.modoLlenado = modo;
+    }
+
+    @Override
+    public String getModoLlenado() {
+        return modoLlenado;
     }
     
 }

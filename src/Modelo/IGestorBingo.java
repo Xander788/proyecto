@@ -17,6 +17,8 @@ public interface IGestorBingo {
     List<CartonBingo> getCartones();
     void setModoJuego(String modo);
     String getModoJuego();
+    void setModoLlenado(String modo);
+    String getModoLlenado();
     void llamarNumero(int num);
     void desmarcarNumero(int num);
     Set<Integer> getNumerosSacados();
