@@ -4,6 +4,13 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pxand
@@ -123,8 +130,8 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
-        setMinimumSize(new java.awt.Dimension(900, 800));
+        setMaximumSize(new java.awt.Dimension(1920, 600));
+        setMinimumSize(new java.awt.Dimension(900, 600));
 
         PanelMenu.setBackground(new java.awt.Color(51, 51, 51));
         PanelMenu.setMinimumSize(new java.awt.Dimension(858, 79));
@@ -230,7 +237,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
                 .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Generarbtn)
                     .addComponent(NumeroActuallbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ReiniciarJuegobtn)
                 .addContainerGap())
         );
@@ -743,7 +750,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelTombola, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -776,12 +783,378 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ComboJuegoActionPerformed
 
     private void AgregarCartonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarCartonbtnActionPerformed
-        
+
     }//GEN-LAST:event_AgregarCartonbtnActionPerformed
-    
+
     public void anadirPanelCarton(PanelCarton panel) {
+
+    }
+
+    public JButton getAgregarCartonbtn() {
+        return AgregarCartonbtn;
+    }
+
+    public JButton getAgregarbtn() {
+        return Agregarbtn;
+    }
+
+    public JComboBox<String> getComboJuego() {
+        return ComboJuego;
+    }
+
+    public JComboBox<String> getComboLlenado() {
+        return ComboLlenado;
+    }
+
+    public JButton getDesmarcarbtn() {
+        return Desmarcarbtn;
+    }
+
+    public JButton getGenerarbtn() {
+        return Generarbtn;
+    }
+
+    public JLabel getModoJuegolbl() {
+        return ModoJuegolbl;
+    }
+
+    public JLabel getModoLlenadolbl() {
+        return ModoLlenadolbl;
+    }
+
+    public JLabel getNumeroActuallbl() {
+        return NumeroActuallbl;
+    }
+
+    public JLabel getNumerolbl() {
+        return Numerolbl;
+    }
+
+    public JTextField getNumerotxtfield() {
+        return Numerotxtfield;
+    }
+
+    public JPanel getPanelCartones() {
+        return PanelCartones;
+    }
+
+    public JPanel getPanelMenu() {
+        return PanelMenu;
+    }
+
+    public JPanel getPanelTombola() {
+        return PanelTombola;
+    }
+
+    public JButton getReiniciarJuegobtn() {
+        return ReiniciarJuegobtn;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JLabel getLblNum1() {
+        return lblNum1;
+    }
+
+    public JLabel getLblNum10() {
+        return lblNum10;
+    }
+
+    public JLabel getLblNum11() {
+        return lblNum11;
+    }
+
+    public JLabel getLblNum12() {
+        return lblNum12;
+    }
+
+    public JLabel getLblNum13() {
+        return lblNum13;
+    }
+
+    public JLabel getLblNum14() {
+        return lblNum14;
+    }
+
+    public JLabel getLblNum15() {
+        return lblNum15;
+    }
+
+    public JLabel getLblNum16() {
+        return lblNum16;
+    }
+
+    public JLabel getLblNum17() {
+        return lblNum17;
+    }
+
+    public JLabel getLblNum18() {
+        return lblNum18;
+    }
+
+    public JLabel getLblNum19() {
+        return lblNum19;
+    }
+
+    public JLabel getLblNum2() {
+        return lblNum2;
+    }
+
+    public JLabel getLblNum20() {
+        return lblNum20;
+    }
+
+    public JLabel getLblNum21() {
+        return lblNum21;
+    }
+
+    public JLabel getLblNum22() {
+        return lblNum22;
+    }
+
+    public JLabel getLblNum23() {
+        return lblNum23;
+    }
+
+    public JLabel getLblNum24() {
+        return lblNum24;
+    }
+
+    public JLabel getLblNum25() {
+        return lblNum25;
+    }
+
+    public JLabel getLblNum26() {
+        return lblNum26;
+    }
+
+    public JLabel getLblNum27() {
+        return lblNum27;
+    }
+
+    public JLabel getLblNum28() {
+        return lblNum28;
+    }
+
+    public JLabel getLblNum29() {
+        return lblNum29;
+    }
+
+    public JLabel getLblNum3() {
+        return lblNum3;
+    }
+
+    public JLabel getLblNum30() {
+        return lblNum30;
+    }
+
+    public JLabel getLblNum31() {
+        return lblNum31;
+    }
+
+    public JLabel getLblNum32() {
+        return lblNum32;
+    }
+
+    public JLabel getLblNum33() {
+        return lblNum33;
+    }
+
+    public JLabel getLblNum34() {
+        return lblNum34;
+    }
+
+    public JLabel getLblNum35() {
+        return lblNum35;
+    }
+
+    public JLabel getLblNum36() {
+        return lblNum36;
+    }
+
+    public JLabel getLblNum37() {
+        return lblNum37;
+    }
+
+    public JLabel getLblNum38() {
+        return lblNum38;
+    }
+
+    public JLabel getLblNum39() {
+        return lblNum39;
+    }
+
+    public JLabel getLblNum4() {
+        return lblNum4;
+    }
+
+    public JLabel getLblNum40() {
+        return lblNum40;
+    }
+
+    public JLabel getLblNum41() {
+        return lblNum41;
+    }
+
+    public JLabel getLblNum42() {
+        return lblNum42;
+    }
+
+    public JLabel getLblNum43() {
+        return lblNum43;
+    }
+
+    public JLabel getLblNum44() {
+        return lblNum44;
+    }
+
+    public JLabel getLblNum45() {
+        return lblNum45;
+    }
+
+    public JLabel getLblNum46() {
+        return lblNum46;
+    }
+
+    public JLabel getLblNum47() {
+        return lblNum47;
+    }
+
+    public JLabel getLblNum48() {
+        return lblNum48;
+    }
+
+    public JLabel getLblNum49() {
+        return lblNum49;
+    }
+
+    public JLabel getLblNum5() {
+        return lblNum5;
+    }
+
+    public JLabel getLblNum50() {
+        return lblNum50;
+    }
+
+    public JLabel getLblNum51() {
+        return lblNum51;
+    }
+
+    public JLabel getLblNum52() {
+        return lblNum52;
+    }
+
+    public JLabel getLblNum53() {
+        return lblNum53;
+    }
+
+    public JLabel getLblNum54() {
+        return lblNum54;
+    }
+
+    public JLabel getLblNum55() {
+        return lblNum55;
+    }
+
+    public JLabel getLblNum56() {
+        return lblNum56;
+    }
+
+    public JLabel getLblNum57() {
+        return lblNum57;
+    }
+
+    public JLabel getLblNum58() {
+        return lblNum58;
+    }
+
+    public JLabel getLblNum59() {
+        return lblNum59;
+    }
+
+    public JLabel getLblNum6() {
+        return lblNum6;
+    }
+
+    public JLabel getLblNum60() {
+        return lblNum60;
+    }
+
+    public JLabel getLblNum61() {
+        return lblNum61;
+    }
+
+    public JLabel getLblNum62() {
+        return lblNum62;
+    }
+
+    public JLabel getLblNum63() {
+        return lblNum63;
+    }
+
+    public JLabel getLblNum64() {
+        return lblNum64;
+    }
+
+    public JLabel getLblNum65() {
+        return lblNum65;
+    }
+
+    public JLabel getLblNum66() {
+        return lblNum66;
+    }
+
+    public JLabel getLblNum67() {
+        return lblNum67;
+    }
+
+    public JLabel getLblNum68() {
+        return lblNum68;
+    }
+
+    public JLabel getLblNum69() {
+        return lblNum69;
+    }
+
+    public JLabel getLblNum7() {
+        return lblNum7;
+    }
+
+    public JLabel getLblNum70() {
+        return lblNum70;
+    }
+
+    public JLabel getLblNum71() {
+        return lblNum71;
+    }
+
+    public JLabel getLblNum72() {
+        return lblNum72;
+    }
+
+    public JLabel getLblNum73() {
+        return lblNum73;
+    }
+
+    public JLabel getLblNum74() {
+        return lblNum74;
+    }
+
+    public JLabel getLblNum75() {
+        return lblNum75;
+    }
+
+    public JLabel getLblNum8() {
+        return lblNum8;
+    }
+
+    public JLabel getLblNum9() {
+        return lblNum9;
+    }
     
-}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarCartonbtn;
