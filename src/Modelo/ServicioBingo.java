@@ -16,7 +16,7 @@ import java.util.Set;
 public class ServicioBingo {
     private IGestorBingo gestor;
 
-    public ServicioBingo(GestorBingoMem gestor) {
+    public ServicioBingo(IGestorBingo gestor) {
         this.gestor = gestor;
     }
     

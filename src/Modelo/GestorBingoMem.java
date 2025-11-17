@@ -14,15 +14,23 @@ import java.util.Set;
  * @author pxand
  */
 public class GestorBingoMem implements IGestorBingo{
-    private List<CartonBingo> cartones = new ArrayList<>();
-    private Set<Integer> numerosSacados = new HashSet<>();
-    private Tombola tombola = Tombola.getInstance();
-    private String modoJuego = "normal";
-    private String modoLlenado = "manual";
+    private List<CartonBingo> cartones;
+    private Set<Integer> numerosSacados;
+    private Tombola tombola;
+    private String modoJuego;
+    private String modoLlenado;
     
     @Override
     public void anadirCarton(CartonBingo carton) {
         cartones.add(carton);
+    }
+
+    public GestorBingoMem() {
+        this.cartones = new ArrayList<>();
+        this.numerosSacados = new HashSet<>();
+        this.tombola = Tombola.getInstance();
+        this.modoJuego = "normal";
+        this.modoLlenado = "manual";       
     }
 
     @Override
