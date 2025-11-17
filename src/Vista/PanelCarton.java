@@ -6,6 +6,7 @@ package Vista;
 
 import Modelo.CartonBingo;
 import java.awt.Color;
+import static java.lang.String.valueOf;
 import javax.swing.JLabel;
 
 /**
@@ -65,7 +66,7 @@ public class PanelCarton extends javax.swing.JPanel {
         Celda43 = new javax.swing.JLabel();
         Celda44 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(102, 102, 102));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.GridLayout(6, 5));
 
@@ -208,6 +209,7 @@ public class PanelCarton extends javax.swing.JPanel {
     }//GEN-LAST:event_cerrarCartonActionPerformed
 
     public void anadirNumeros(CartonBingo carton){
+        cargarTabla(); 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (i == 2 && j == 2) {
@@ -246,6 +248,34 @@ public class PanelCarton extends javax.swing.JPanel {
     
     public void desmarcarGanador(){
         setBackground(Color.BLACK);
+    }
+    
+    public void cargarTabla(){
+        labels[0][0] = Celda00;
+        labels[0][1] = Celda01;
+        labels[0][2] = Celda02;
+        labels[0][3] = Celda03;
+        labels[0][4] = Celda04;
+        labels[1][0] = Celda10;
+        labels[1][1] = Celda11;
+        labels[1][2] = Celda12;
+        labels[1][3] = Celda13;
+        labels[1][4] = Celda14;
+        labels[2][0] = Celda20;
+        labels[2][1] = Celda21;
+        labels[2][2] = Celda22;
+        labels[2][3] = Celda23;
+        labels[2][4] = Celda24;
+        labels[3][0] = Celda30;
+        labels[3][1] = Celda31;
+        labels[3][2] = Celda32;
+        labels[3][3] = Celda33;
+        labels[3][4] = Celda34;
+        labels[4][0] = Celda40;
+        labels[4][1] = Celda41;
+        labels[4][2] = Celda42;
+        labels[4][3] = Celda43;
+        labels[4][4] = Celda44;
     }
     
 
