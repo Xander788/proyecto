@@ -9,7 +9,7 @@ package Vista;
  * @author pxand
  */
 public class IFrmBingo extends javax.swing.JInternalFrame {
-
+    
     /**
      * Creates new form IFrmBingo
      */
@@ -26,7 +26,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelMenu = new javax.swing.JPanel();
         ModoJuegolbl = new javax.swing.JLabel();
         ModoLlenadolbl = new javax.swing.JLabel();
         ComboJuego = new javax.swing.JComboBox<>();
@@ -38,8 +38,10 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         Desmarcarbtn = new javax.swing.JButton();
         ReiniciarJuegobtn = new javax.swing.JButton();
         NumeroActuallbl = new javax.swing.JLabel();
+        AgregarCartonbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        PanelCartones = new javax.swing.JPanel();
+        PanelTombola = new javax.swing.JPanel();
         lblNum1 = new javax.swing.JLabel();
         lblNum2 = new javax.swing.JLabel();
         lblNum3 = new javax.swing.JLabel();
@@ -116,6 +118,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         lblNum74 = new javax.swing.JLabel();
         lblNum75 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 204));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -123,9 +126,9 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(900, 800));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setMinimumSize(new java.awt.Dimension(858, 79));
-        jPanel1.setPreferredSize(new java.awt.Dimension(858, 79));
+        PanelMenu.setBackground(new java.awt.Color(51, 51, 51));
+        PanelMenu.setMinimumSize(new java.awt.Dimension(858, 79));
+        PanelMenu.setPreferredSize(new java.awt.Dimension(858, 79));
 
         ModoJuegolbl.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ModoJuegolbl.setText("Modo de Juego");
@@ -134,7 +137,6 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         ModoLlenadolbl.setText("Modo de Llenado");
 
         ComboJuego.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        ComboJuego.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ComboJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboJuegoActionPerformed(evt);
@@ -142,7 +144,6 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         });
 
         ComboLlenado.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        ComboLlenado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Numerolbl.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Numerolbl.setText("Numero:");
@@ -189,537 +190,562 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         NumeroActuallbl.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         NumeroActuallbl.setText("Numero Actual:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        AgregarCartonbtn.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        AgregarCartonbtn.setText("Agregar");
+        AgregarCartonbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarCartonbtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
+        PanelMenu.setLayout(PanelMenuLayout);
+        PanelMenuLayout.setHorizontalGroup(
+            PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(ModoJuegolbl))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(ComboJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(Agregarbtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(ComboLlenado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ModoLlenadolbl)
-                                .addGap(41, 41, 41)
-                                .addComponent(Numerolbl)))))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Desmarcarbtn)
-                    .addComponent(Numerotxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NumeroActuallbl)
-                    .addComponent(Generarbtn))
-                .addGap(18, 18, 18)
-                .addComponent(ReiniciarJuegobtn)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ReiniciarJuegobtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ModoJuegolbl)
-                            .addComponent(ModoLlenadolbl)
-                            .addComponent(Numerolbl)
-                            .addComponent(Numerotxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NumeroActuallbl))
+                .addGap(36, 36, 36)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
+                        .addComponent(ModoLlenadolbl)
+                        .addGap(84, 84, 84)
+                        .addComponent(Numerolbl))
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
+                        .addComponent(ComboLlenado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Agregarbtn)
-                                .addComponent(Desmarcarbtn)
-                                .addComponent(Generarbtn)
-                                .addComponent(ComboLlenado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ComboJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(AgregarCartonbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(Agregarbtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Numerotxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Desmarcarbtn))
+                .addGap(27, 27, 27)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Generarbtn)
+                    .addComponent(NumeroActuallbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(ReiniciarJuegobtn)
+                .addContainerGap())
+        );
+        PanelMenuLayout.setVerticalGroup(
+            PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ModoJuegolbl)
+                        .addComponent(ModoLlenadolbl))
+                    .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NumeroActuallbl)
+                        .addComponent(Numerotxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Numerolbl)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ComboJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboLlenado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AgregarCartonbtn)
+                        .addComponent(Agregarbtn)
+                        .addComponent(Desmarcarbtn)
+                        .addComponent(Generarbtn)))
                 .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addComponent(ReiniciarJuegobtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel2.setLayout(new java.awt.GridLayout(5, 15));
+        jScrollPane1.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout PanelCartonesLayout = new javax.swing.GroupLayout(PanelCartones);
+        PanelCartones.setLayout(PanelCartonesLayout);
+        PanelCartonesLayout.setHorizontalGroup(
+            PanelCartonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 946, Short.MAX_VALUE)
+        );
+        PanelCartonesLayout.setVerticalGroup(
+            PanelCartonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 515, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(PanelCartones);
+
+        PanelTombola.setBackground(new java.awt.Color(0, 153, 255));
+        PanelTombola.setLayout(new java.awt.GridLayout(5, 15));
 
         lblNum1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum1.setText("1");
         lblNum1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum1);
+        PanelTombola.add(lblNum1);
 
         lblNum2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum2.setText("1");
         lblNum2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum2);
+        PanelTombola.add(lblNum2);
 
         lblNum3.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum3.setText("1");
         lblNum3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum3);
+        PanelTombola.add(lblNum3);
 
         lblNum4.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum4.setText("1");
         lblNum4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum4);
+        PanelTombola.add(lblNum4);
 
         lblNum5.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum5.setText("1");
         lblNum5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum5);
+        PanelTombola.add(lblNum5);
 
         lblNum6.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum6.setText("1");
         lblNum6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum6);
+        PanelTombola.add(lblNum6);
 
         lblNum7.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum7.setText("1");
         lblNum7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum7);
+        PanelTombola.add(lblNum7);
 
         lblNum8.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum8.setText("1");
         lblNum8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum8);
+        PanelTombola.add(lblNum8);
 
         lblNum9.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum9.setText("1");
         lblNum9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum9);
+        PanelTombola.add(lblNum9);
 
         lblNum10.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum10.setText("1");
         lblNum10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum10);
+        PanelTombola.add(lblNum10);
 
         lblNum11.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum11.setText("1");
         lblNum11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum11);
+        PanelTombola.add(lblNum11);
 
         lblNum12.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum12.setText("1");
         lblNum12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum12);
+        PanelTombola.add(lblNum12);
 
         lblNum13.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum13.setText("1");
         lblNum13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum13);
+        PanelTombola.add(lblNum13);
 
         lblNum14.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum14.setText("1");
         lblNum14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum14);
+        PanelTombola.add(lblNum14);
 
         lblNum15.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum15.setText("1");
         lblNum15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum15);
+        PanelTombola.add(lblNum15);
 
         lblNum16.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum16.setText("1");
         lblNum16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum16);
+        PanelTombola.add(lblNum16);
 
         lblNum17.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum17.setText("1");
         lblNum17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum17);
+        PanelTombola.add(lblNum17);
 
         lblNum18.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum18.setText("1");
         lblNum18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum18);
+        PanelTombola.add(lblNum18);
 
         lblNum19.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum19.setText("1");
         lblNum19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum19);
+        PanelTombola.add(lblNum19);
 
         lblNum20.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum20.setText("1");
         lblNum20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum20);
+        PanelTombola.add(lblNum20);
 
         lblNum21.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum21.setText("1");
         lblNum21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum21);
+        PanelTombola.add(lblNum21);
 
         lblNum22.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum22.setText("1");
         lblNum22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum22);
+        PanelTombola.add(lblNum22);
 
         lblNum23.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum23.setText("1");
         lblNum23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum23);
+        PanelTombola.add(lblNum23);
 
         lblNum24.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum24.setText("1");
         lblNum24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum24);
+        PanelTombola.add(lblNum24);
 
         lblNum25.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum25.setText("1");
         lblNum25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum25);
+        PanelTombola.add(lblNum25);
 
         lblNum26.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum26.setText("1");
         lblNum26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum26);
+        PanelTombola.add(lblNum26);
 
         lblNum27.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum27.setText("1");
         lblNum27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum27);
+        PanelTombola.add(lblNum27);
 
         lblNum28.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum28.setText("1");
         lblNum28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum28);
+        PanelTombola.add(lblNum28);
 
         lblNum29.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum29.setText("1");
         lblNum29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum29);
+        PanelTombola.add(lblNum29);
 
         lblNum30.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum30.setText("1");
         lblNum30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum30);
+        PanelTombola.add(lblNum30);
 
         lblNum31.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum31.setText("1");
         lblNum31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum31);
+        PanelTombola.add(lblNum31);
 
         lblNum32.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum32.setText("1");
         lblNum32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum32);
+        PanelTombola.add(lblNum32);
 
         lblNum33.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum33.setText("1");
         lblNum33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum33);
+        PanelTombola.add(lblNum33);
 
         lblNum34.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum34.setText("1");
         lblNum34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum34);
+        PanelTombola.add(lblNum34);
 
         lblNum35.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum35.setText("1");
         lblNum35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum35);
+        PanelTombola.add(lblNum35);
 
         lblNum36.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum36.setText("1");
         lblNum36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum36);
+        PanelTombola.add(lblNum36);
 
         lblNum37.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum37.setText("1");
         lblNum37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum37);
+        PanelTombola.add(lblNum37);
 
         lblNum38.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum38.setText("1");
         lblNum38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum38);
+        PanelTombola.add(lblNum38);
 
         lblNum39.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum39.setText("1");
         lblNum39.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum39);
+        PanelTombola.add(lblNum39);
 
         lblNum40.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum40.setText("1");
         lblNum40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum40);
+        PanelTombola.add(lblNum40);
 
         lblNum41.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum41.setText("1");
         lblNum41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum41);
+        PanelTombola.add(lblNum41);
 
         lblNum42.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum42.setText("1");
         lblNum42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum42);
+        PanelTombola.add(lblNum42);
 
         lblNum43.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum43.setText("1");
         lblNum43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum43);
+        PanelTombola.add(lblNum43);
 
         lblNum44.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum44.setText("1");
         lblNum44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum44);
+        PanelTombola.add(lblNum44);
 
         lblNum45.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum45.setText("1");
         lblNum45.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum45);
+        PanelTombola.add(lblNum45);
 
         lblNum46.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum46.setText("1");
         lblNum46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum46);
+        PanelTombola.add(lblNum46);
 
         lblNum47.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum47.setText("1");
         lblNum47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum47);
+        PanelTombola.add(lblNum47);
 
         lblNum48.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum48.setText("1");
         lblNum48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum48);
+        PanelTombola.add(lblNum48);
 
         lblNum49.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum49.setText("1");
         lblNum49.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum49);
+        PanelTombola.add(lblNum49);
 
         lblNum50.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum50.setText("1");
         lblNum50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum50);
+        PanelTombola.add(lblNum50);
 
         lblNum51.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum51.setText("1");
         lblNum51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum51);
+        PanelTombola.add(lblNum51);
 
         lblNum52.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum52.setText("1");
         lblNum52.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum52);
+        PanelTombola.add(lblNum52);
 
         lblNum53.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum53.setText("1");
         lblNum53.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum53);
+        PanelTombola.add(lblNum53);
 
         lblNum54.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum54.setText("1");
         lblNum54.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum54);
+        PanelTombola.add(lblNum54);
 
         lblNum55.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum55.setText("1");
         lblNum55.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum55);
+        PanelTombola.add(lblNum55);
 
         lblNum56.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum56.setText("1");
         lblNum56.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum56);
+        PanelTombola.add(lblNum56);
 
         lblNum57.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum57.setText("1");
         lblNum57.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum57);
+        PanelTombola.add(lblNum57);
 
         lblNum58.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum58.setText("1");
         lblNum58.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum58);
+        PanelTombola.add(lblNum58);
 
         lblNum59.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum59.setText("1");
         lblNum59.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum59);
+        PanelTombola.add(lblNum59);
 
         lblNum60.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum60.setText("1");
         lblNum60.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum60);
+        PanelTombola.add(lblNum60);
 
         lblNum61.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum61.setText("1");
         lblNum61.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum61);
+        PanelTombola.add(lblNum61);
 
         lblNum62.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum62.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum62.setText("1");
         lblNum62.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum62);
+        PanelTombola.add(lblNum62);
 
         lblNum63.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum63.setText("1");
         lblNum63.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum63);
+        PanelTombola.add(lblNum63);
 
         lblNum64.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum64.setText("1");
         lblNum64.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum64);
+        PanelTombola.add(lblNum64);
 
         lblNum65.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum65.setText("1");
         lblNum65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum65);
+        PanelTombola.add(lblNum65);
 
         lblNum66.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum66.setText("1");
         lblNum66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum66);
+        PanelTombola.add(lblNum66);
 
         lblNum67.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum67.setText("1");
         lblNum67.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum67);
+        PanelTombola.add(lblNum67);
 
         lblNum68.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum68.setText("1");
         lblNum68.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum68);
+        PanelTombola.add(lblNum68);
 
         lblNum69.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum69.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum69.setText("1");
         lblNum69.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum69);
+        PanelTombola.add(lblNum69);
 
         lblNum70.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum70.setText("1");
         lblNum70.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum70);
+        PanelTombola.add(lblNum70);
 
         lblNum71.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum71.setText("1");
         lblNum71.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum71);
+        PanelTombola.add(lblNum71);
 
         lblNum72.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum72.setText("1");
         lblNum72.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum72);
+        PanelTombola.add(lblNum72);
 
         lblNum73.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum73.setText("1");
         lblNum73.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum73);
+        PanelTombola.add(lblNum73);
 
         lblNum74.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum74.setText("1");
         lblNum74.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum74);
+        PanelTombola.add(lblNum74);
 
         lblNum75.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         lblNum75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNum75.setText("1");
         lblNum75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(lblNum75);
+        PanelTombola.add(lblNum75);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
+            .addComponent(PanelTombola, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addComponent(PanelTombola, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -748,13 +774,17 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     private void ComboJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboJuegoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboJuegoActionPerformed
+
+    private void AgregarCartonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarCartonbtnActionPerformed
+        
+    }//GEN-LAST:event_AgregarCartonbtnActionPerformed
     
-    public void anadirPanelCarton(PanelCarton panel){
-        jScrollPane1.add(panel);
-        jScrollPane1.repaint();
-    }
+    public void anadirPanelCarton(PanelCarton panel) {
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarCartonbtn;
     private javax.swing.JButton Agregarbtn;
     private javax.swing.JComboBox<String> ComboJuego;
     private javax.swing.JComboBox<String> ComboLlenado;
@@ -765,9 +795,10 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel NumeroActuallbl;
     private javax.swing.JLabel Numerolbl;
     private javax.swing.JTextField Numerotxtfield;
+    private javax.swing.JPanel PanelCartones;
+    private javax.swing.JPanel PanelMenu;
+    private javax.swing.JPanel PanelTombola;
     private javax.swing.JButton ReiniciarJuegobtn;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNum1;
     private javax.swing.JLabel lblNum10;
