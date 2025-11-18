@@ -37,8 +37,8 @@ public class ServicioBingo {
     }
     
     public CartonBingo crearCarton(String id,String modo){
-        ICartonFactory factory = TipoCartonFactory.getFactory(modo);
-        return factory.crearCarton(id, modo);
+        CartonBingo carton = new CartonBingo(id);
+        return carton;
     }
     
     public boolean esCartonValido(CartonBingo carton){

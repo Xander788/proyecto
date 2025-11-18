@@ -4,37 +4,25 @@
  */
 package Vista;
 
+import Modelo.CartonBingo;
+import java.util.List;
+
 /**
  *
  * @author danny
  */
 public interface IVista <Entidad> {
 
-    public static int YES_OPTION = 0;
-    public static int NO_OPTION = 1;
-
-    void limpiar();
-
-    void cambiarEstado(boolean estado);
-
-    default void habilitarCampos() {
-        cambiarEstado(true);
-    }
-
-    default void desabilitarCampos() {
-        cambiarEstado(false);
-
-    }
-
-    void mostrarDatosA(Entidad entidad);
-
+   void mostrarMensaje(String msg, String titulo);
+    void mostrarError(String msg);
     boolean confirmar(String msg, String titulo);
 
-    void mostrarMensaje(String msg, String titulo);
+    // Métodos para el Bingo
+    void mostrarCarton(CartonBingo carton);
+    void actualizarTombolaV(int numero);
+    void limpiarTombolaV();
+    void marcarGanadores(List<CartonBingo> ganadores);
 
-    void mostrarError(String msg);
-
-    String solicitar(String msg, String titulo);
     
 // NEcesito mandarte a commit 
 }

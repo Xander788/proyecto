@@ -77,6 +77,7 @@ public class GestorBingoMem implements IGestorBingo{
     @Override
     public void desmarcarNumero(int num) {
         numerosSacados.remove(num);
+        tombola.meterNumero(num);
         for (CartonBingo carton : cartones) {
             carton.desmarcarNumero(num);
         }
@@ -114,7 +115,14 @@ public class GestorBingoMem implements IGestorBingo{
 
     @Override
     public int sacarNumero() {
-        return tombola.sacarNumero();
+        int num = tombola.sacarNumero();
+        if (!numerosSacados.contains(num)) {
+            numerosSacados.add(num);
+            for (CartonBingo carton : cartones) {
+                carton.marcarNumero(num);
+            }
+        }
+        return num;
     }
     
     private boolean checkHorizontal(boolean[][] sacado) {

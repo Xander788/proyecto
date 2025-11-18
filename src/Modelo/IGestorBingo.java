@@ -25,4 +25,5 @@ public interface IGestorBingo {
     boolean revisarVictoria(CartonBingo carton);
     void reiniciarJuego();
     int sacarNumero();
+    
 }

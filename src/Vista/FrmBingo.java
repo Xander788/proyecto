@@ -109,7 +109,7 @@ public class FrmBingo extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         GestorBingoMem gestor = new GestorBingoMem();
         ServicioBingo servicio = new ServicioBingo(gestor);
-        IFrmBingo frm = new IFrmBingo();
+        IFrmBingo frm = new IFrmBingo(servicio);
         this.jDesktopPane1.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

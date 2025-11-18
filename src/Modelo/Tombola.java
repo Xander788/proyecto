@@ -41,4 +41,9 @@ public class Tombola {
         }
         return numeros.remove(0);
     }
+    
+    public void meterNumero(int num) {
+        numeros.add(num);
+        Collections.shuffle(numeros);
+    }
 }

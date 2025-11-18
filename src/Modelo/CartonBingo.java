@@ -4,7 +4,10 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -21,6 +24,7 @@ public class CartonBingo {
         this.numeros = new int[5][5];
         this.marcados = new boolean[5][5];       
         this.marcados[2][2] = true;
+        this.numeros[2][2] = -1;
     }
 
     public String getId() {
@@ -35,8 +39,8 @@ public class CartonBingo {
         return marcados;
     }
 
-    public void setNumeros(int i ,int j ,int num) {
-        numeros[i][j]= num;
+    public void setNumeros(int[][] numeros) {
+        this.numeros = numeros;
     }
     
     public void marcarNumero(int num){
@@ -66,18 +70,42 @@ public class CartonBingo {
     
     public boolean esValido() {
         Set<Integer> unique = new HashSet<>();
-        for (int j = 0; j < 5; j++) {
-            for (int i = 0; i < 5; i++) {
-                if (i == 2 && j == 2) continue;
-                int num = numeros[i][j];
+        for (int fila = 0; fila < 5; fila++) {
+            for (int col = 0; col < 5; col++) {
+                if (fila == 2 && col == 2) continue;
+                int num = numeros[fila][col];
                 if (num < 1 || num > 75 || unique.contains(num)) return false;
                 unique.add(num);
-                int min = j * 15 + 1;
-                int max = (j + 1) * 15;
+                int min = col * 15 + 1;
+                int max = (col + 1) * 15;
                 if (num < min || num > max) return false;
             }
         }
-        return unique.size() == 24;
+        return unique.size() == 25;
     }
+
+    public void generarNumeros() {
+        Random rand = new Random();
+        for (int col = 0; col < 5; col++) {
+            int inicio = col * 15 + 1;
+            int fin = inicio + 14;
+            List<Integer> disponibles = new ArrayList<>();
+            for (int n = inicio; n <= fin; n++) {
+                disponibles.add(n);
+            }
+
+            for (int fila = 0; fila < 5; fila++) {
+                if (fila == 2 && col == 2) {
+                    numeros[fila][col] = 0;
+                    continue;
+                }
+                int idx = rand.nextInt(disponibles.size());
+                numeros[fila][col] = disponibles.get(idx);
+                disponibles.remove(idx);
+            }
+        }
+    }
+    
+    
     
 }

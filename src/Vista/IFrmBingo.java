@@ -4,6 +4,13 @@
  */
 package Vista;
 
+import Controlador.ControladorBingo;
+import Modelo.CartonBingo;
+import Modelo.ServicioBingo;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.List;
+import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,13 +22,21 @@ import javax.swing.JTextField;
  *
  * @author pxand
  */
-public class IFrmBingo extends javax.swing.JInternalFrame {
+public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     
+    private ControladorBingo controlador;
+    private JLabel[][] tombolaLabels;
+    private int contadorCartones;
     /**
      * Creates new form IFrmBingo
      */
-    public IFrmBingo() {
+    public IFrmBingo(ServicioBingo servicio) {
         initComponents();
+        tombolaLabels = new JLabel[5][15];
+        inicializarMatrizTombola();
+        controlador = new ControladorBingo(servicio,this);
+        contadorCartones = 1;
+ 
     }
 
     /**
@@ -144,6 +159,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         ModoLlenadolbl.setText("Modo de Llenado");
 
         ComboJuego.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        ComboJuego.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Cuatro Esquinas", "Carton Lleno" }));
         ComboJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboJuegoActionPerformed(evt);
@@ -151,6 +167,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         });
 
         ComboLlenado.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        ComboLlenado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automatico", "Manual" }));
 
         Numerolbl.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Numerolbl.setText("Numero:");
@@ -212,11 +229,11 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
             .addGroup(PanelMenuLayout.createSequentialGroup()
                 .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ModoJuegolbl))
-                    .addGroup(PanelMenuLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(ComboJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ComboJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(ModoJuegolbl)))
                 .addGap(36, 36, 36)
                 .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelMenuLayout.createSequentialGroup()
@@ -270,18 +287,6 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
         );
 
         jScrollPane1.setBackground(new java.awt.Color(0, 153, 204));
-
-        javax.swing.GroupLayout PanelCartonesLayout = new javax.swing.GroupLayout(PanelCartones);
-        PanelCartones.setLayout(PanelCartonesLayout);
-        PanelCartonesLayout.setHorizontalGroup(
-            PanelCartonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 946, Short.MAX_VALUE)
-        );
-        PanelCartonesLayout.setVerticalGroup(
-            PanelCartonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 515, Short.MAX_VALUE)
-        );
-
         jScrollPane1.setViewportView(PanelCartones);
 
         PanelTombola.setBackground(new java.awt.Color(0, 153, 255));
@@ -759,19 +764,24 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReiniciarJuegobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarJuegobtnActionPerformed
-        // TODO add your handling code here:
+        controlador.reiniciarJuego();
     }//GEN-LAST:event_ReiniciarJuegobtnActionPerformed
 
     private void DesmarcarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesmarcarbtnActionPerformed
-        // TODO add your handling code here:
+        controlador.desmarcarNumero(Integer.parseInt(Numerotxtfield.getText()));
     }//GEN-LAST:event_DesmarcarbtnActionPerformed
 
     private void GenerarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarbtnActionPerformed
-        // TODO add your handling code here:
+        controlador.sacarNumero();
     }//GEN-LAST:event_GenerarbtnActionPerformed
 
     private void AgregarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarbtnActionPerformed
-        //anadirPanelCarton(panel);
+        if (Numerotxtfield.getText().equals("")) {
+            mostrarError("Ingrese un numero antes de agregar");
+        }else{
+           int num = Integer.parseInt(Numerotxtfield.getText());
+           controlador.llamarNumero(num);
+        }
     }//GEN-LAST:event_AgregarbtnActionPerformed
 
     private void NumerotxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumerotxtfieldActionPerformed
@@ -779,380 +789,178 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumerotxtfieldActionPerformed
 
     private void ComboJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboJuegoActionPerformed
-        // TODO add your handling code here:
+        int opcion = ComboLlenado.getSelectedIndex();
+        if (opcion == 1) {
+            controlador.cambiarModoJuego("Automatico");
+        }
+        if (opcion == 2) {
+            controlador.cambiarModoJuego("Manual");
+        }
+        
     }//GEN-LAST:event_ComboJuegoActionPerformed
 
     private void AgregarCartonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarCartonbtnActionPerformed
+        String modoLlenado = (String) ComboLlenado.getSelectedItem();
+        
+        controlador.cambiarModoLlenado(modoLlenado);
+        String id =  String.valueOf(contadorCartones);
+        CartonBingo carton;
+        if (modoLlenado.contains("Auto")) {
+            
+             carton = controlador.generarCarton(id);
+        }
+        if (modoLlenado.contains("Manu")) {
+            carton = new CartonBingo(String.valueOf(contadorCartones));
+            int[][] matriz = new int[5][5];
+            for (int fila = 0; fila < 5; fila++) {
+                for (int col = 0; col < 5; col++) {
+                    if (fila == 2 && col == 2) {
+                        matriz[fila][col] = 0;
+                        continue;
+                    }
+                    DialogCartonManual dialog = new DialogCartonManual(null,true,fila,col);
+                    dialog.setVisible(true);
+                    matriz[fila][col] = Integer.parseInt(dialog.getValorIngresado());
+                }
+            }
+      
+            carton.setNumeros(matriz);
+            controlador.agregarCartonManual(carton);
+        }
+        
 
+        
+
+        
     }//GEN-LAST:event_AgregarCartonbtnActionPerformed
 
-    public void anadirPanelCarton(PanelCarton panel) {
-
-    }
-
-    public JButton getAgregarCartonbtn() {
-        return AgregarCartonbtn;
-    }
-
-    public JButton getAgregarbtn() {
-        return Agregarbtn;
-    }
-
-    public JComboBox<String> getComboJuego() {
-        return ComboJuego;
-    }
-
-    public JComboBox<String> getComboLlenado() {
-        return ComboLlenado;
-    }
-
-    public JButton getDesmarcarbtn() {
-        return Desmarcarbtn;
-    }
-
-    public JButton getGenerarbtn() {
-        return Generarbtn;
-    }
-
-    public JLabel getModoJuegolbl() {
-        return ModoJuegolbl;
-    }
-
-    public JLabel getModoLlenadolbl() {
-        return ModoLlenadolbl;
-    }
-
-    public JLabel getNumeroActuallbl() {
-        return NumeroActuallbl;
-    }
-
-    public JLabel getNumerolbl() {
-        return Numerolbl;
-    }
-
-    public JTextField getNumerotxtfield() {
-        return Numerotxtfield;
-    }
-
-    public JPanel getPanelCartones() {
-        return PanelCartones;
-    }
-
-    public JPanel getPanelMenu() {
-        return PanelMenu;
-    }
-
-    public JPanel getPanelTombola() {
-        return PanelTombola;
-    }
-
-    public JButton getReiniciarJuegobtn() {
-        return ReiniciarJuegobtn;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public JLabel getLblNum1() {
-        return lblNum1;
-    }
-
-    public JLabel getLblNum10() {
-        return lblNum10;
-    }
-
-    public JLabel getLblNum11() {
-        return lblNum11;
-    }
-
-    public JLabel getLblNum12() {
-        return lblNum12;
-    }
-
-    public JLabel getLblNum13() {
-        return lblNum13;
-    }
-
-    public JLabel getLblNum14() {
-        return lblNum14;
-    }
-
-    public JLabel getLblNum15() {
-        return lblNum15;
-    }
-
-    public JLabel getLblNum16() {
-        return lblNum16;
-    }
-
-    public JLabel getLblNum17() {
-        return lblNum17;
-    }
-
-    public JLabel getLblNum18() {
-        return lblNum18;
-    }
-
-    public JLabel getLblNum19() {
-        return lblNum19;
-    }
-
-    public JLabel getLblNum2() {
-        return lblNum2;
-    }
-
-    public JLabel getLblNum20() {
-        return lblNum20;
-    }
-
-    public JLabel getLblNum21() {
-        return lblNum21;
-    }
-
-    public JLabel getLblNum22() {
-        return lblNum22;
-    }
-
-    public JLabel getLblNum23() {
-        return lblNum23;
-    }
-
-    public JLabel getLblNum24() {
-        return lblNum24;
-    }
-
-    public JLabel getLblNum25() {
-        return lblNum25;
-    }
-
-    public JLabel getLblNum26() {
-        return lblNum26;
-    }
-
-    public JLabel getLblNum27() {
-        return lblNum27;
-    }
-
-    public JLabel getLblNum28() {
-        return lblNum28;
-    }
-
-    public JLabel getLblNum29() {
-        return lblNum29;
-    }
-
-    public JLabel getLblNum3() {
-        return lblNum3;
-    }
-
-    public JLabel getLblNum30() {
-        return lblNum30;
-    }
-
-    public JLabel getLblNum31() {
-        return lblNum31;
-    }
-
-    public JLabel getLblNum32() {
-        return lblNum32;
-    }
-
-    public JLabel getLblNum33() {
-        return lblNum33;
-    }
-
-    public JLabel getLblNum34() {
-        return lblNum34;
-    }
-
-    public JLabel getLblNum35() {
-        return lblNum35;
-    }
-
-    public JLabel getLblNum36() {
-        return lblNum36;
-    }
-
-    public JLabel getLblNum37() {
-        return lblNum37;
-    }
-
-    public JLabel getLblNum38() {
-        return lblNum38;
-    }
-
-    public JLabel getLblNum39() {
-        return lblNum39;
-    }
-
-    public JLabel getLblNum4() {
-        return lblNum4;
-    }
-
-    public JLabel getLblNum40() {
-        return lblNum40;
-    }
-
-    public JLabel getLblNum41() {
-        return lblNum41;
-    }
-
-    public JLabel getLblNum42() {
-        return lblNum42;
-    }
-
-    public JLabel getLblNum43() {
-        return lblNum43;
-    }
-
-    public JLabel getLblNum44() {
-        return lblNum44;
-    }
-
-    public JLabel getLblNum45() {
-        return lblNum45;
-    }
-
-    public JLabel getLblNum46() {
-        return lblNum46;
-    }
-
-    public JLabel getLblNum47() {
-        return lblNum47;
-    }
-
-    public JLabel getLblNum48() {
-        return lblNum48;
-    }
-
-    public JLabel getLblNum49() {
-        return lblNum49;
-    }
-
-    public JLabel getLblNum5() {
-        return lblNum5;
-    }
-
-    public JLabel getLblNum50() {
-        return lblNum50;
-    }
-
-    public JLabel getLblNum51() {
-        return lblNum51;
-    }
-
-    public JLabel getLblNum52() {
-        return lblNum52;
-    }
-
-    public JLabel getLblNum53() {
-        return lblNum53;
-    }
-
-    public JLabel getLblNum54() {
-        return lblNum54;
-    }
-
-    public JLabel getLblNum55() {
-        return lblNum55;
-    }
-
-    public JLabel getLblNum56() {
-        return lblNum56;
-    }
-
-    public JLabel getLblNum57() {
-        return lblNum57;
-    }
-
-    public JLabel getLblNum58() {
-        return lblNum58;
-    }
-
-    public JLabel getLblNum59() {
-        return lblNum59;
-    }
-
-    public JLabel getLblNum6() {
-        return lblNum6;
-    }
-
-    public JLabel getLblNum60() {
-        return lblNum60;
-    }
-
-    public JLabel getLblNum61() {
-        return lblNum61;
-    }
-
-    public JLabel getLblNum62() {
-        return lblNum62;
-    }
-
-    public JLabel getLblNum63() {
-        return lblNum63;
-    }
-
-    public JLabel getLblNum64() {
-        return lblNum64;
-    }
-
-    public JLabel getLblNum65() {
-        return lblNum65;
-    }
-
-    public JLabel getLblNum66() {
-        return lblNum66;
-    }
-
-    public JLabel getLblNum67() {
-        return lblNum67;
-    }
-
-    public JLabel getLblNum68() {
-        return lblNum68;
-    }
-
-    public JLabel getLblNum69() {
-        return lblNum69;
-    }
-
-    public JLabel getLblNum7() {
-        return lblNum7;
-    }
-
-    public JLabel getLblNum70() {
-        return lblNum70;
-    }
-
-    public JLabel getLblNum71() {
-        return lblNum71;
-    }
-
-    public JLabel getLblNum72() {
-        return lblNum72;
-    }
-
-    public JLabel getLblNum73() {
-        return lblNum73;
-    }
-
-    public JLabel getLblNum74() {
-        return lblNum74;
-    }
-
-    public JLabel getLblNum75() {
-        return lblNum75;
-    }
-
-    public JLabel getLblNum8() {
-        return lblNum8;
-    }
-
-    public JLabel getLblNum9() {
-        return lblNum9;
-    }
+    public void anadirPanelCarton(CartonBingo carton) {
+        PanelCarton panelCarton = new PanelCarton(carton);
+        
+        panelCarton.getTitulo2().setText(String.valueOf(contadorCartones));
+        contadorCartones++;
+        PanelCartones.add(panelCarton);
+        PanelCartones.revalidate();
+        PanelCartones.repaint();
+    }
+    
+    
+    public void marcarNumeroTombola(int numero) {
+        if (numero < 1 || numero > 75) {
+            return;
+        }
+        int fila = (numero - 1) / 15;     
+        int col = (numero - 1) % 15; 
+        JLabel label = tombolaLabels[fila][col];
+        label.setForeground(Color.RED);
+        NumeroActuallbl.setText(String.valueOf(numero));
+        NumeroActuallbl.setForeground(Color.YELLOW);
+    }
+
+    public void limpiarTombola() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 15; j++) {
+                tombolaLabels[i][j].setForeground(Color.BLACK);
+                
+            }
+        }
+        NumeroActuallbl.setText("");
+    }
+    
+    private void inicializarMatrizTombola() {
+
+        tombolaLabels[0][0] = lblNum1;
+        tombolaLabels[0][1] = lblNum2;
+        tombolaLabels[0][2] = lblNum3;
+        tombolaLabels[0][3] = lblNum4;
+        tombolaLabels[0][4] = lblNum5;
+        tombolaLabels[0][5] = lblNum6;
+        tombolaLabels[0][6] = lblNum7;
+        tombolaLabels[0][7] = lblNum8;
+        tombolaLabels[0][8] = lblNum9;
+        tombolaLabels[0][9] = lblNum10;
+        tombolaLabels[0][10] = lblNum11;
+        tombolaLabels[0][11] = lblNum12;
+        tombolaLabels[0][12] = lblNum13;
+        tombolaLabels[0][13] = lblNum14;
+        tombolaLabels[0][14] = lblNum15;
+
+        tombolaLabels[1][0] = lblNum16;
+        tombolaLabels[1][1] = lblNum17;
+        tombolaLabels[1][2] = lblNum18;
+        tombolaLabels[1][3] = lblNum19;
+        tombolaLabels[1][4] = lblNum20;
+        tombolaLabels[1][5] = lblNum21;
+        tombolaLabels[1][6] = lblNum22;
+        tombolaLabels[1][7] = lblNum23;
+        tombolaLabels[1][8] = lblNum24;
+        tombolaLabels[1][9] = lblNum25;
+        tombolaLabels[1][10] = lblNum26;
+        tombolaLabels[1][11] = lblNum27;
+        tombolaLabels[1][12] = lblNum28;
+        tombolaLabels[1][13] = lblNum29;
+        tombolaLabels[1][14] = lblNum30;
+
+        tombolaLabels[2][0] = lblNum31;
+        tombolaLabels[2][1] = lblNum32;
+        tombolaLabels[2][2] = lblNum33;
+        tombolaLabels[2][3] = lblNum34;
+        tombolaLabels[2][4] = lblNum35;
+        tombolaLabels[2][5] = lblNum36;
+        tombolaLabels[2][6] = lblNum37;
+        tombolaLabels[2][7] = lblNum38;
+        tombolaLabels[2][8] = lblNum39;
+        tombolaLabels[2][9] = lblNum40;
+        tombolaLabels[2][10] = lblNum41;
+        tombolaLabels[2][11] = lblNum42;
+        tombolaLabels[2][12] = lblNum43;
+        tombolaLabels[2][13] = lblNum44;
+        tombolaLabels[2][14] = lblNum45;
+
+        tombolaLabels[3][0] = lblNum46;
+        tombolaLabels[3][1] = lblNum47;
+        tombolaLabels[3][2] = lblNum48;
+        tombolaLabels[3][3] = lblNum49;
+        tombolaLabels[3][4] = lblNum50;
+        tombolaLabels[3][5] = lblNum51;
+        tombolaLabels[3][6] = lblNum52;
+        tombolaLabels[3][7] = lblNum53;
+        tombolaLabels[3][8] = lblNum54;
+        tombolaLabels[3][9] = lblNum55;
+        tombolaLabels[3][10] = lblNum56;
+        tombolaLabels[3][11] = lblNum57;
+        tombolaLabels[3][12] = lblNum58;
+        tombolaLabels[3][13] = lblNum59;
+        tombolaLabels[3][14] = lblNum60;
+
+        tombolaLabels[4][0] = lblNum61;
+        tombolaLabels[4][1] = lblNum62;
+        tombolaLabels[4][2] = lblNum63;
+        tombolaLabels[4][3] = lblNum64;
+        tombolaLabels[4][4] = lblNum65;
+        tombolaLabels[4][5] = lblNum66;
+        tombolaLabels[4][6] = lblNum67;
+        tombolaLabels[4][7] = lblNum68;
+        tombolaLabels[4][8] = lblNum69;
+        tombolaLabels[4][9] = lblNum70;
+        tombolaLabels[4][10] = lblNum71;
+        tombolaLabels[4][11] = lblNum72;
+        tombolaLabels[4][12] = lblNum73;
+        tombolaLabels[4][13] = lblNum74;
+        tombolaLabels[4][14] = lblNum75;
+
+        int num = 1;
+
+        for (int fila = 0; fila < 5; fila++) {
+            for (int col = 0; col < 15; col++) {
+                tombolaLabels[fila][col].setText(String.valueOf(num));
+                num++;
+            }
+        }
+    }
+
+
+    
     
     
 
@@ -1249,4 +1057,46 @@ public class IFrmBingo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblNum8;
     private javax.swing.JLabel lblNum9;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarMensaje(String msg, String titulo) {
+        javax.swing.JOptionPane.showMessageDialog(this, msg, titulo, javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void mostrarError(String msg) {
+        javax.swing.JOptionPane.showMessageDialog(this, msg, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    public boolean confirmar(String msg, String titulo) {
+        return javax.swing.JOptionPane.showConfirmDialog(this, msg, titulo, 
+                javax.swing.JOptionPane.YES_NO_OPTION) == javax.swing.JOptionPane.YES_OPTION;
+    }
+
+    @Override
+    public void mostrarCarton(CartonBingo carton) {
+        anadirPanelCarton(carton);
+    }
+
+    @Override
+    public void actualizarTombolaV(int numero) {
+        marcarNumeroTombola(numero);
+    }
+
+    @Override
+    public void limpiarTombolaV() {
+       limpiarTombola();
+    }
+
+    
+
+    @Override
+    public void marcarGanadores(List ganadores) {
+        marcarGanadores(ganadores);
+    }
+
+    
+
+    
 }

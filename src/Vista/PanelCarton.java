@@ -15,14 +15,17 @@ import javax.swing.JLabel;
  */
 public class PanelCarton extends javax.swing.JPanel {
     private CartonBingo carton;
-    private JLabel[][] labels = new JLabel[5][5];
+    private JLabel[][] labels; 
     
     /**
      * Creates new form Cartones
      */
     
     public PanelCarton(CartonBingo carton) {
+        this.carton = carton;
         initComponents();
+        labels = new JLabel[5][5];
+        cargarTabla();
         anadirNumeros(carton);
     }
 
@@ -208,12 +211,13 @@ public class PanelCarton extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_cerrarCartonActionPerformed
 
-    public void anadirNumeros(CartonBingo carton){
-        cargarTabla(); 
+    public void anadirNumeros(CartonBingo carton){ 
+        int[][] numeros = carton.getNumeros();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
+                int num = numeros[i][j];
                 if (i == 2 && j == 2) {
-                    labels[i][j].setText("Libre");
+                    labels[i][j].setText("FREE");
                 } else {
                     labels[i][j].setText(String.valueOf(carton.getNumeros()[i][j]));
                 }
@@ -277,6 +281,32 @@ public class PanelCarton extends javax.swing.JPanel {
         labels[4][3] = Celda43;
         labels[4][4] = Celda44;
     }
+
+    public void setTitulo1(JLabel Titulo1) {
+        this.Titulo1 = Titulo1;
+    }
+
+    public void setTitulo2(JLabel Titulo2) {
+        this.Titulo2 = Titulo2;
+    }
+
+    public void setTitulo3(JLabel Titulo3) {
+        this.Titulo3 = Titulo3;
+    }
+
+    public JLabel getTitulo1() {
+        return Titulo1;
+    }
+
+    public JLabel getTitulo2() {
+        return Titulo2;
+    }
+
+    public JLabel getTitulo3() {
+        return Titulo3;
+    }
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -311,4 +341,6 @@ public class PanelCarton extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo4;
     private javax.swing.JButton cerrarCarton;
     // End of variables declaration//GEN-END:variables
+
+    
 }
