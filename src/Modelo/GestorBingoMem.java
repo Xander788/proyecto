@@ -90,10 +90,10 @@ public class GestorBingoMem implements IGestorBingo{
        
 
     @Override
-    public boolean revisarVictoria(CartonBingo carton) {
+    public boolean revisarVictoria(CartonBingo carton,String modo) {
         boolean[][] sacado = carton.getMarcados();
-        switch (modoJuego) {
-            case "Normal":
+        switch (modo) {
+            case "normal":
                 return checkHorizontal(sacado) || checkVertical(sacado) || checkDiagonal(sacado) || checkCuatroEsquinas(sacado);
             case "Cuatro Esquinas":
                 return checkCuatroEsquinas(sacado);

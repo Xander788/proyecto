@@ -22,7 +22,7 @@ public interface IGestorBingo {
     void llamarNumero(int num);
     void desmarcarNumero(int num);
     Set<Integer> getNumerosSacados();
-    boolean revisarVictoria(CartonBingo carton);
+    boolean revisarVictoria(CartonBingo carton,String modo);
     void reiniciarJuego();
     int sacarNumero();
     

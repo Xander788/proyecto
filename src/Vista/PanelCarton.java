@@ -236,23 +236,27 @@ public class PanelCarton extends javax.swing.JPanel {
                 if (i == 2 && j == 2) {
                     labels[i][j].setText("FREE");
                 } else if (marcados[i][j]) {
-                    labels[i][j].setBackground(Color.GREEN);
                     labels[i][j].setForeground(Color.WHITE);
                 } else {
-                    labels[i][j].setBackground(null);
                     labels[i][j].setForeground(Color.BLACK);
                 }
             }
         }
     }
     
-    public void marcarGanador(){
-        setBackground(Color.RED);
+    public void actualizarMarcadosGanador(){
+        boolean[][] marcados = carton.getMarcados();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (marcados[i][j]) {
+                    labels[i][j].setForeground(Color.YELLOW);
+                }
+            }
+        }
     }
     
-    public void desmarcarGanador(){
-        setBackground(Color.BLACK);
-    }
+    
+    
     
     public void cargarTabla(){
         labels[0][0] = Celda00;
@@ -305,6 +309,11 @@ public class PanelCarton extends javax.swing.JPanel {
     public JLabel getTitulo3() {
         return Titulo3;
     }
+
+    public CartonBingo getCarton() {
+        return carton;
+    }
+    
     
     
     
@@ -341,6 +350,7 @@ public class PanelCarton extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo4;
     private javax.swing.JButton cerrarCarton;
     // End of variables declaration//GEN-END:variables
+
 
     
 }

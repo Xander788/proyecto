@@ -76,7 +76,7 @@ public class ServicioBingo {
     public List<CartonBingo> revisarVictoria(){
         List<CartonBingo> ganadores = new ArrayList<>();
         for (CartonBingo carton : gestor.getCartones()) {
-            if (gestor.revisarVictoria(carton)) {
+            if (gestor.revisarVictoria(carton,gestor.getModoJuego())) {
                 ganadores.add(carton);
             }
         }

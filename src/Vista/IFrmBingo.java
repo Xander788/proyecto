@@ -8,15 +8,8 @@ import Controlador.ControladorBingo;
 import Modelo.CartonBingo;
 import Modelo.ServicioBingo;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
-import java.util.Set;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -27,6 +20,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     private ControladorBingo controlador;
     private JLabel[][] tombolaLabels;
     private int contadorCartones;
+    List<CartonBingo> ganadores;
     /**
      * Creates new form IFrmBingo
      */
@@ -168,6 +162,11 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
 
         ComboLlenado.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ComboLlenado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automatico", "Manual" }));
+        ComboLlenado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboLlenadoActionPerformed(evt);
+            }
+        });
 
         Numerolbl.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         Numerolbl.setText("Numero:");
@@ -776,7 +775,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     }//GEN-LAST:event_GenerarbtnActionPerformed
 
     private void AgregarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarbtnActionPerformed
-        if (Numerotxtfield.getText().equals("")) {
+        if (Numerotxtfield.getText().equals(" ")) {
             mostrarError("Ingrese un numero antes de agregar");
         }else{
            int num = Integer.parseInt(Numerotxtfield.getText());
@@ -791,11 +790,14 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     private void ComboJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboJuegoActionPerformed
         int opcion = ComboLlenado.getSelectedIndex();
         if (opcion == 1) {
-            controlador.cambiarModoJuego("Automatico");
+            controlador.cambiarModoJuego("Normal");
         }
         if (opcion == 2) {
-            controlador.cambiarModoJuego("Manual");
+            controlador.cambiarModoJuego("Cuatro Esquinas");
         }
+        if (opcion == 3) {
+            controlador.cambiarModoJuego("Carton Lleno");
+        }    
         
     }//GEN-LAST:event_ComboJuegoActionPerformed
 
@@ -834,6 +836,10 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
         
     }//GEN-LAST:event_AgregarCartonbtnActionPerformed
 
+    private void ComboLlenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboLlenadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboLlenadoActionPerformed
+
     public void anadirPanelCarton(CartonBingo carton) {
         PanelCarton panelCarton = new PanelCarton(carton);
         
@@ -853,8 +859,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
         int col = (numero - 1) % 15; 
         JLabel label = tombolaLabels[fila][col];
         label.setForeground(Color.RED);
-        NumeroActuallbl.setText(String.valueOf(numero));
-        NumeroActuallbl.setForeground(Color.YELLOW);
+        NumeroActuallbl.setText("Numero Actual:" + String.valueOf(numero));
     }
 
     public void limpiarTombola() {
@@ -957,6 +962,25 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
                 num++;
             }
         }
+    }
+    
+    private void actualizarTodosLosCartones() {
+        for (java.awt.Component comp : PanelCartones.getComponents()) {
+            if (comp instanceof PanelCarton) {
+                ((PanelCarton) comp).actualizarMarcados();
+            }
+        }
+    }
+    
+    public void desmarcarTombola(int numero) {
+        if (numero < 1 || numero > 75) {
+            return;
+        }
+        int fila = (numero - 1) / 15;     
+        int col = (numero - 1) % 15; 
+        JLabel label = tombolaLabels[fila][col];
+        label.setForeground(Color.BLACK);
+        NumeroActuallbl.setText("Numero Actual:" + String.valueOf(numero));
     }
 
 
@@ -1082,21 +1106,42 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     @Override
     public void actualizarTombolaV(int numero) {
         marcarNumeroTombola(numero);
+        actualizarTodosLosCartones();
     }
 
     @Override
     public void limpiarTombolaV() {
        limpiarTombola();
+       actualizarTodosLosCartones();
     }
 
-    
 
     @Override
-    public void marcarGanadores(List ganadores) {
-        marcarGanadores(ganadores);
+    public void marcarGanadoresV(List<CartonBingo> ganadores) {
+        if (ganadores == null || ganadores.isEmpty()) return;
+
+    String ids = ganadores.stream()
+            .map(CartonBingo::getId)
+            .collect(java.util.stream.Collectors.joining(", "));
+
+    mostrarMensaje("¡BINGO! Cartones ganadores: " + ids, "¡BINGO!");
+
+    // Resaltar visualmente los ganadores
+    for (java.awt.Component comp : PanelCartones.getComponents()) {
+        if (comp instanceof PanelCarton) {
+            PanelCarton panel = (PanelCarton) comp;
+            if (ganadores.contains(panel.getCarton())) {
+                panel.actualizarMarcadosGanador();  
+                panel.setBorder(javax.swing.BorderFactory.createLineBorder(Color.YELLOW, 5));
+            }
+        }
+    }
     }
 
-    
+    @Override
+    public void desmarcarTombolaV(int numero) {
+        desmarcarTombola(numero);
+        actualizarTodosLosCartones();
+    }
 
-    
 }

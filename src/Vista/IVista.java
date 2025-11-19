@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author danny
  */
-public interface IVista <Entidad> {
+public interface IVista {
 
    void mostrarMensaje(String msg, String titulo);
     void mostrarError(String msg);
@@ -20,8 +20,10 @@ public interface IVista <Entidad> {
     // Métodos para el Bingo
     void mostrarCarton(CartonBingo carton);
     void actualizarTombolaV(int numero);
+    void desmarcarTombolaV(int numero);
     void limpiarTombolaV();
-    void marcarGanadores(List<CartonBingo> ganadores);
+    void marcarGanadoresV(List<CartonBingo> ganadores);
+    
 
     
 // NEcesito mandarte a commit 

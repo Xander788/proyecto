@@ -16,6 +16,7 @@ import java.util.List;
 public class ControladorBingo {
     private final ServicioBingo servicio;
     private final IVista vista;
+    private List<CartonBingo> ganadores;
 
     public ControladorBingo(ServicioBingo servicio, IVista vista){
         this.servicio = servicio;
@@ -74,9 +75,9 @@ public class ControladorBingo {
             int num = servicio.sacarNumero();
             vista.actualizarTombolaV(num);
 
-            List<CartonBingo> ganadores = servicio.revisarVictoria();
+            ganadores = servicio.revisarVictoria();
             if (!ganadores.isEmpty()){
-                vista.marcarGanadores(ganadores);
+                vista.marcarGanadoresV(ganadores);
             }
 
         } catch (Exception ex){
@@ -89,10 +90,10 @@ public class ControladorBingo {
         try {
             servicio.llamarNumero(num);
             vista.actualizarTombolaV(num);
-
-            List<CartonBingo> ganadores = servicio.revisarVictoria();
+            
+            ganadores = servicio.revisarVictoria();
             if (!ganadores.isEmpty()){
-                vista.marcarGanadores(ganadores);
+                vista.marcarGanadoresV(ganadores);
             }
 
         } catch (Exception ex){
@@ -103,7 +104,7 @@ public class ControladorBingo {
     public void desmarcarNumero(int num){
         try {
             servicio.desmarcarNumero(num);
-            vista.actualizarTombolaV(num);
+            vista.desmarcarTombolaV(num);
 
         } catch (Exception ex){
             vista.mostrarError(ex.getMessage());
@@ -123,4 +124,5 @@ public class ControladorBingo {
             vista.mostrarError(ex.getMessage());
         }
     }
+    
 }
