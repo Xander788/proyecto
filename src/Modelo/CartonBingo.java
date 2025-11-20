@@ -76,7 +76,7 @@ public class CartonBingo {
                     continue;
                 }
                 int num = numeros[fila][col];
-                if (num < 1 || num > 75 || unique.contains(num)) {
+                if (num < 0 || num > 76 || unique.contains(num)) {
                     return false;
                 }
                 unique.add(num);

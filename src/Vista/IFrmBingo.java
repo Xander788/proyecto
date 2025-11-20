@@ -834,29 +834,33 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
         if (modoLlenado.contains("Manu")) {
             carton = new CartonBingo(String.valueOf(contadorCartones));
             int[][] matriz = new int[5][5];
-            for (int fila = 0; fila < 5; fila++) {
-                for (int col = 0; col < 5; col++) {
-                    if (fila == 2 && col == 2) {
-                        matriz[fila][col] = 0;
+            for (int columna = 0; columna < 5; columna++) {
+                for (int fila = 0; fila < 5; fila++) {
+                    if (columna == 2 && fila == 2) {
+                        continue;
                     }
-                    DialogCartonManual dialog = new DialogCartonManual(null, true, fila, col);
+                    DialogCartonManual dialog = new DialogCartonManual(null, true, columna, fila);
                     dialog.setVisible(true);
                     String valor = dialog.getValorIngresado();
-                    if (!valor.isBlank()) {
-                        matriz[fila][col] = Integer.parseInt(dialog.getValorIngresado());
+                    if (valor.isBlank()) {
+                        matriz[fila][columna] = Integer.parseInt(dialog.getValorIngresado());
                     }
                     if (valor.isBlank()) {
                         mostrarError("No se puede ingresar un valor nulo");
                         break;
                     }
+                    
                 }
-                break;
+                for (int fila = 0; fila < 5; fila++) {
+                    if (matriz[fila][columna] == 0) {
+                        break;
+                    }
+                }
             }
             carton.setNumeros(matriz);
             if (carton.esValido()) {
                 controlador.agregarCartonManual(carton);
             }
-
         }
     }//GEN-LAST:event_AgregarCartonbtnActionPerformed
 
