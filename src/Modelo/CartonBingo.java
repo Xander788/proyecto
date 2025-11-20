@@ -22,9 +22,9 @@ public class CartonBingo {
     public CartonBingo(String id) {
         this.id = id;
         this.numeros = new int[5][5];
-        this.marcados = new boolean[5][5];       
+        this.marcados = new boolean[5][5];
         this.marcados[2][2] = true;
-        this.numeros[2][2] = -1;
+        this.numeros[2][2] = 0;
     }
 
     public String getId() {
@@ -42,43 +42,44 @@ public class CartonBingo {
     public void setNumeros(int[][] numeros) {
         this.numeros = numeros;
     }
-    
-    public void marcarNumero(int num){
+
+    public void marcarNumero(int num) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                if (numeros[i][j]== num) {
-                    marcados[i][j]= true;
+                if (numeros[i][j] == num) {
+                    marcados[i][j] = true;
                 }
             }
         }
     }
-    
-    public void desmarcarNumero(int num){
+
+    public void desmarcarNumero(int num) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                if (numeros[i][j]== num) {
-                    marcados[i][j]= false;
+                if (numeros[i][j] == num) {
+                    marcados[i][j] = false;
                 }
             }
         }
     }
-    
+
     public void reiniciarCarton() {
         marcados = new boolean[5][5];
         marcados[2][2] = true;
     }
-    
+
     public boolean esValido() {
         Set<Integer> unique = new HashSet<>();
         for (int fila = 0; fila < 5; fila++) {
             for (int col = 0; col < 5; col++) {
-                if (fila == 2 && col == 2) continue;
+                if (fila == 2 && col == 2) {
+                    continue;
+                }
                 int num = numeros[fila][col];
-                if (num < 1 || num > 75 || unique.contains(num)) return false;
+                if (num < 1 || num > 75 || unique.contains(num)) {
+                    return false;
+                }
                 unique.add(num);
-                int min = col * 15 + 1;
-                int max = (col + 1) * 15;
-                if (num < min || num > max) return false;
             }
         }
         return unique.size() == 25;
@@ -93,7 +94,6 @@ public class CartonBingo {
             for (int n = inicio; n <= fin; n++) {
                 disponibles.add(n);
             }
-
             for (int fila = 0; fila < 5; fila++) {
                 if (fila == 2 && col == 2) {
                     numeros[fila][col] = 0;
@@ -105,7 +105,5 @@ public class CartonBingo {
             }
         }
     }
-    
-    
-    
+
 }

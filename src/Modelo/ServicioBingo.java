@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public class ServicioBingo {
     private IGestorBingo gestor;
-
+  
     public ServicioBingo(IGestorBingo gestor) {
         this.gestor = gestor;
     }
@@ -36,7 +36,7 @@ public class ServicioBingo {
         gestor.setModoLlenado(modo);
     }
     
-    public CartonBingo crearCarton(String id,String modo){
+    public CartonBingo crearCarton(String id){
         CartonBingo carton = new CartonBingo(id);
         return carton;
     }

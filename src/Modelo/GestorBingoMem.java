@@ -19,12 +19,8 @@ public class GestorBingoMem implements IGestorBingo{
     private Tombola tombola;
     private String modoJuego;
     private String modoLlenado;
-    
-    @Override
-    public void anadirCarton(CartonBingo carton) {
-        cartones.add(carton);
-    }
 
+    
     public GestorBingoMem() {
         this.cartones = new ArrayList<>();
         this.numerosSacados = new HashSet<>();
@@ -32,18 +28,21 @@ public class GestorBingoMem implements IGestorBingo{
         this.modoJuego = "normal";
         this.modoLlenado = "manual";       
     }
+    
+    @Override
+    public void anadirCarton(CartonBingo carton) {
+        cartones.add(carton);
+    }
 
     @Override
     public void eliminarCarton(String id) {
         CartonBingo encontrado = null;
-
         for (CartonBingo c : cartones) {
             if (c.getId().equals(id)) {
                 encontrado = c;
                 break;
             }
         }
-
         if (encontrado != null) {
             cartones.remove(encontrado);
         }

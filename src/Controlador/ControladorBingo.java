@@ -42,14 +42,10 @@ public class ControladorBingo {
     public CartonBingo generarCarton(String id){
         try {
             String modo = servicio.getModoJuego();
-            CartonBingo carton = servicio.crearCarton(id, modo);
-
+            CartonBingo carton = servicio.crearCarton(id);
             carton.generarNumeros();
-
             servicio.anadirCarton(carton);
             vista.mostrarCarton(carton);
-
-            
             return carton;
         } catch (Exception ex){
             vista.mostrarError(ex.getMessage());
@@ -59,12 +55,8 @@ public class ControladorBingo {
 
     public void agregarCartonManual( CartonBingo carton){
         try {
-            
-
             servicio.anadirCarton(carton);
             vista.mostrarCarton(carton);
-
-
         } catch (Exception ex){
             vista.mostrarError(ex.getMessage());
         }
@@ -74,7 +66,6 @@ public class ControladorBingo {
         try {
             int num = servicio.sacarNumero();
             vista.actualizarTombolaV(num);
-
             ganadores = servicio.revisarVictoria();
             if (!ganadores.isEmpty()){
                 vista.marcarGanadoresV(ganadores);
@@ -111,16 +102,14 @@ public class ControladorBingo {
         }
     }
 
-    public void reiniciarJuego(){
+    public void reiniciarJuego() {
         try {
-            if (!vista.confirmar("¿Desea reiniciar el juego?", "Confirmación"))
+            if (!vista.confirmar("¿Desea reiniciar el juego?", "Confirmación")) {
                 return;
-
+            }
             servicio.reiniciarJuego();
             vista.limpiarTombolaV();
-
-
-        } catch (Exception ex){
+        } catch (Exception ex) {
             vista.mostrarError(ex.getMessage());
         }
     }

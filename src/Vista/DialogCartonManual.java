@@ -21,7 +21,7 @@ public class DialogCartonManual extends javax.swing.JDialog {
     public DialogCartonManual(java.awt.Frame parent, boolean modal,int fila, int columna) {
         super(parent, modal);
         initComponents();
-        this.fila = fila;
+        this.fila = fila ;
         this.columna = columna;
         
         Filalbl.setText("Fila: "+ fila);
@@ -48,7 +48,7 @@ public class DialogCartonManual extends javax.swing.JDialog {
         Filalbl = new javax.swing.JLabel();
         Columnalbl = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Agregar Numeros");
 
         Titulolbl.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -120,6 +120,7 @@ public class DialogCartonManual extends javax.swing.JDialog {
     }//GEN-LAST:event_NumerotxtfieldActionPerformed
 
     private void AgregarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarbtnActionPerformed
+        
         valorIngresado = Numerotxtfield.getText();
         this.dispose();
     }//GEN-LAST:event_AgregarbtnActionPerformed

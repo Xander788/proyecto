@@ -137,7 +137,6 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
         setBackground(new java.awt.Color(0, 153, 204));
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setMaximumSize(new java.awt.Dimension(1920, 600));
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -767,7 +766,20 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     }//GEN-LAST:event_ReiniciarJuegobtnActionPerformed
 
     private void DesmarcarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesmarcarbtnActionPerformed
-        controlador.desmarcarNumero(Integer.parseInt(Numerotxtfield.getText()));
+        String numtxtfield = Numerotxtfield.getText();
+        if (!numtxtfield.isBlank()){
+            int num = Integer.parseInt(Numerotxtfield.getText());
+            if (num > 75) {
+                mostrarError("El numero no puede ser mayor a 75");
+            }
+            if (num < 1) {
+                mostrarError("El numero no puede ser menor que 1");
+            }
+            controlador.desmarcarNumero(num);
+            
+        }else{
+           mostrarError("Ingrese un numero antes de desmarcar");
+        } 
     }//GEN-LAST:event_DesmarcarbtnActionPerformed
 
     private void GenerarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarbtnActionPerformed
@@ -775,11 +787,19 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     }//GEN-LAST:event_GenerarbtnActionPerformed
 
     private void AgregarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarbtnActionPerformed
-        if (Numerotxtfield.getText().equals(" ")) {
-            mostrarError("Ingrese un numero antes de agregar");
+        String numtxtfield = Numerotxtfield.getText();
+        if (!numtxtfield.isBlank()){
+            int num = Integer.parseInt(Numerotxtfield.getText());
+            if (num > 75) {
+                mostrarError("El numero no puede ser mayor a 75");
+            }
+            if (num < 1) {
+                mostrarError("El numero no puede ser menor que 1");
+            }
+            controlador.llamarNumero(num);
+            
         }else{
-           int num = Integer.parseInt(Numerotxtfield.getText());
-           controlador.llamarNumero(num);
+           mostrarError("Ingrese un numero antes de agregar");
         }
     }//GEN-LAST:event_AgregarbtnActionPerformed
 
@@ -788,28 +808,28 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     }//GEN-LAST:event_NumerotxtfieldActionPerformed
 
     private void ComboJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboJuegoActionPerformed
-        int opcion = ComboLlenado.getSelectedIndex();
-        if (opcion == 1) {
+        int opcion = ComboJuego.getSelectedIndex();
+        if (opcion == 0) {
             controlador.cambiarModoJuego("Normal");
         }
-        if (opcion == 2) {
+        if (opcion == 1) {
             controlador.cambiarModoJuego("Cuatro Esquinas");
         }
-        if (opcion == 3) {
+        if (opcion == 2) {
             controlador.cambiarModoJuego("Carton Lleno");
         }    
         
     }//GEN-LAST:event_ComboJuegoActionPerformed
 
     private void AgregarCartonbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarCartonbtnActionPerformed
-        String modoLlenado = (String) ComboLlenado.getSelectedItem();
-        
+        String modoLlenado = String.valueOf(ComboLlenado.getSelectedItem()) ;
+
         controlador.cambiarModoLlenado(modoLlenado);
-        String id =  String.valueOf(contadorCartones);
+        String id = String.valueOf(contadorCartones);
         CartonBingo carton;
         if (modoLlenado.contains("Auto")) {
-            
-             carton = controlador.generarCarton(id);
+
+            carton = controlador.generarCarton(id);
         }
         if (modoLlenado.contains("Manu")) {
             carton = new CartonBingo(String.valueOf(contadorCartones));
@@ -818,22 +838,26 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
                 for (int col = 0; col < 5; col++) {
                     if (fila == 2 && col == 2) {
                         matriz[fila][col] = 0;
-                        continue;
                     }
-                    DialogCartonManual dialog = new DialogCartonManual(null,true,fila,col);
+                    DialogCartonManual dialog = new DialogCartonManual(null, true, fila, col);
                     dialog.setVisible(true);
-                    matriz[fila][col] = Integer.parseInt(dialog.getValorIngresado());
+                    String valor = dialog.getValorIngresado();
+                    if (!valor.isBlank()) {
+                        matriz[fila][col] = Integer.parseInt(dialog.getValorIngresado());
+                    }
+                    if (valor.isBlank()) {
+                        mostrarError("No se puede ingresar un valor nulo");
+                        break;
+                    }
                 }
+                break;
             }
-      
             carton.setNumeros(matriz);
-            controlador.agregarCartonManual(carton);
+            if (carton.esValido()) {
+                controlador.agregarCartonManual(carton);
+            }
+
         }
-        
-
-        
-
-        
     }//GEN-LAST:event_AgregarCartonbtnActionPerformed
 
     private void ComboLlenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboLlenadoActionPerformed
@@ -858,7 +882,7 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
         int fila = (numero - 1) / 15;     
         int col = (numero - 1) % 15; 
         JLabel label = tombolaLabels[fila][col];
-        label.setForeground(Color.RED);
+        label.setForeground(Color.YELLOW);
         NumeroActuallbl.setText("Numero Actual:" + String.valueOf(numero));
     }
 
@@ -1120,19 +1144,16 @@ public class IFrmBingo extends javax.swing.JInternalFrame implements IVista {
     public void marcarGanadoresV(List<CartonBingo> ganadores) {
         if (ganadores == null || ganadores.isEmpty()) return;
 
-    String ids = ganadores.stream()
-            .map(CartonBingo::getId)
-            .collect(java.util.stream.Collectors.joining(", "));
+    String ids = ganadores.stream().map(CartonBingo::getId).collect(java.util.stream.Collectors.joining(", "));
 
     mostrarMensaje("¡BINGO! Cartones ganadores: " + ids, "¡BINGO!");
 
-    // Resaltar visualmente los ganadores
     for (java.awt.Component comp : PanelCartones.getComponents()) {
         if (comp instanceof PanelCarton) {
             PanelCarton panel = (PanelCarton) comp;
             if (ganadores.contains(panel.getCarton())) {
-                panel.actualizarMarcadosGanador();  
-                panel.setBorder(javax.swing.BorderFactory.createLineBorder(Color.YELLOW, 5));
+                panel.actualizarMarcados();
+                panel.actualizarMarcadosGanador();
             }
         }
     }

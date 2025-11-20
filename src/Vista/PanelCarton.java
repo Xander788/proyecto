@@ -235,6 +235,7 @@ public class PanelCarton extends javax.swing.JPanel {
             for (int j = 0; j < 5; j++) {
                 if (i == 2 && j == 2) {
                     labels[i][j].setText("FREE");
+                    labels[i][j].setForeground(Color.BLACK);
                 } else if (marcados[i][j]) {
                     labels[i][j].setForeground(Color.WHITE);
                 } else {
